@@ -36,13 +36,14 @@ def _process_extensions(file_extensions: (str, list)) -> list:
         extension = '*' + extension
         # verify that this is now in the format we require
         if not extension[0:2] == '*.':
+            # don't think it's possible to get here but just in case
             raise Exception('please enter the file_extensions parameter like this : file_extensions = "jpg"')
         processed_extensions.append(extension)
     return processed_extensions
 
 
-def get_all_files(path_to_data: (Path, str), file_extensions: (str, list),
-                  return_absolute_filepath: bool = False) -> list:
+def _get_all_files(path_to_data: (Path, str), file_extensions: (str, list),
+                   return_absolute_filepath: bool = False) -> list:
     """
     quick script to just collect all the files in the Analysis path
 

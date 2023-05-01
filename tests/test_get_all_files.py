@@ -5,6 +5,7 @@ tests for get_all_files
 from pathlib import Path
 import sys
 import os
+import pytest
 this_file_loc = Path(__file__).parent
 sys.path.insert(0, str(this_file_loc.parent))
 from get_all_files import get_all_files  # flake8: noqa
@@ -65,3 +66,22 @@ def test_with_subfolders():
     for folder in subfolders:
         files = get_all_files(folder, extension, return_absolute_filepath=True)
         all_files.extend(files)
+
+
+def test_passing_non_existent_directory():
+    home_dir = Path('~').expanduser()
+    not_a_directory = home_dir / 'this_directory_better_not_exist_afgaergaeg'
+    assert not not_a_directory.is_dir()
+    with pytest.raises(NotADirectoryError):
+        # this asserts that a NotADirectoryError is being raised
+        files = get_all_files(not_a_directory, 'bla')
+
+    with pytest.raises(TypeError):
+        files = get_all_files([not_a_directory], 'bla')
+
+
+def test_passing_extensions_with_different_formats():
+    home_dir = Path('~').expanduser()
+
+    with pytest.raises(TypeError):
+        files = get_all_files(home_dir, 123)
