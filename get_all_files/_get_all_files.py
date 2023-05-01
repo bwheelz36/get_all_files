@@ -3,6 +3,7 @@ import glob
 import os
 import warnings
 
+
 def get_all_files(path_to_data: (Path, str), file_extensions: (str, list),
                   return_absolute_filepath: bool = False):
     """
