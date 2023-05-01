@@ -1,9 +1,13 @@
+"""
+tests for get_all_files
+"""
+
 from pathlib import Path
 import sys
 import os
 this_file_loc = Path(__file__).parent
 sys.path.insert(0, str(this_file_loc.parent))
-from get_all_files import get_all_files
+from get_all_files import get_all_files  # flake8: noqa
 
 
 def test_single_extension_use():
@@ -47,6 +51,7 @@ def test_absolute_path_use():
         assert Path(file).parent == home_dir
         assert Path(file).name.split('.')[1] in [extension1, extension2]
 
+
 def test_with_subfolders():
     """
     this is more a test that this runs than aa test of functinoality
@@ -60,5 +65,3 @@ def test_with_subfolders():
     for folder in subfolders:
         files = get_all_files(folder, extension, return_absolute_filepath=True)
         all_files.extend(files)
-    print('hello')
-
