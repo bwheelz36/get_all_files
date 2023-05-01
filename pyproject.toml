@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "get-all-files"
+version = "0.0.1"
+description = "a simple package to get all files with given file extension in a directory"
+authors = ["brendan whelan <bwheelz360@gmail.com"]
+readme = "README.md"
+packages = [{include = "get_all_files"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+poetry = "^1.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
