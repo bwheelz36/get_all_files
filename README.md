@@ -1,5 +1,8 @@
 # READ ME
 
+![tests](https://github.com/bwheelz36/get_all_files/actions/workflows/run_tests.yml/badge.svg)
+
+
 This is a very simple package which simply gets all the files with extension matching a list of extensions in a given
 directory. I found that I was including functionality like this in so many other projects I might as well just make
 it a package. Plus I wanted to play with poetry.
