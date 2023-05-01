@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "get-all-files"
-version = "0.0.1"
+version = "0.1.0"
 description = "a simple package to get all files with given file extension in a directory"
 authors = ["brendan whelan <bwheelz360@gmail.com>"]
 readme = "README.md"
