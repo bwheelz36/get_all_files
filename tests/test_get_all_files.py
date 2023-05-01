@@ -74,14 +74,14 @@ def test_passing_non_existent_directory():
     assert not not_a_directory.is_dir()
     with pytest.raises(NotADirectoryError):
         # this asserts that a NotADirectoryError is being raised
-        files = get_all_files(not_a_directory, 'bla')
+        get_all_files(not_a_directory, 'bla')
 
     with pytest.raises(TypeError):
-        files = get_all_files([not_a_directory], 'bla')
+        get_all_files([not_a_directory], 'bla')
 
 
 def test_passing_extensions_with_different_formats():
     home_dir = Path('~').expanduser()
 
     with pytest.raises(TypeError):
-        files = get_all_files(home_dir, 123)
+        get_all_files(home_dir, 123)
