@@ -21,7 +21,7 @@ home_dir = Path('~').expanduser()
 jpg_files = get_all_files(home_dir, 'jpg')
 ```
 
-**get all jpg OR png files in home directory**
+**get all jpg AND png files in home directory**
 ```python
 from get_all_files import get_all_files
 from pathlib import Path
@@ -40,6 +40,7 @@ jpg_files = get_all_files(home_dir, ['jpg', 'png'], return_absolute_filepath=Tru
 ```
 
 **Loop over multiple directories**
+
 This package is not recursive - if you want to process multiple directories you have to do it yourself:
 
 ```python
