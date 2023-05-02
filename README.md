@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/bwheelz36/get_all_files/branch/main/graph/badge.svg?token=CCVB5BAR8W)](https://codecov.io/gh/bwheelz36/get_all_files)
 
 
-This is a very simple package which simply gets all the files with extension matching a list of extensions in a given
+This is a very simple package which is basically a wrapper around glob; it simply gets all the files with extension matching a list of extensions in a given
 directory. I found that I was including functionality like this in so many other projects I might as well just make
 it a package. Plus I wanted to play with poetry. 
 
