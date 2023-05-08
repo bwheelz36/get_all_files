@@ -51,7 +51,11 @@ def _get_all_files(path_to_data: (Path, str),
     :type file_extensions: str, list
     :param file_name: string to match files to; defaults to '*' which gives all files matching the extensions. set to
         e.g. 'a*' to get all files starting with a
+    :type file_name: str, optional
+    :param sorted: applys default list sorting to found files.
+    :type sorted: bool, optional
     :param return_absolute_filepath: if False (default) file names are returned; if True absolute file names returned
+    :type return_absolute_filepath: bool, optional
     :returns Files: list of all found files
     """
     # process input path:
