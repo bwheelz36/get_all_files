@@ -32,25 +32,24 @@ def _process_extensions(file_extensions: (str, list)) -> list:
         if not file_extensions[0] == '.':
             # handles the case where the user entered 'jpg' instead of '.jpg'
             extension = '.' + extension
-        # add wildcard
-        extension = '*' + extension
-        # verify that this is now in the format we require
-        if not extension[0:2] == '*.':
-            # don't think it's possible to get here but just in case
-            raise Exception('please enter the file_extensions parameter like this : file_extensions = "jpg"')
         processed_extensions.append(extension)
     return processed_extensions
 
 
-def _get_all_files(path_to_data: (Path, str), file_extensions: (str, list),
+def _get_all_files(path_to_data: (Path, str),
+                   file_extensions: (str, list),
+                   file_name: str = '*',
                    return_absolute_filepath: bool = False) -> list:
     """
-    quick script to just collect all the files in the Analysis path
+    quick script to just collect all the files in the Analysis path. Basically a wrapper around glob with (for me)
+    easier to use syntax.
 
     :param path_to_data: folder where the files are
     :type path_to_data: pathlib.Path, string
     :param file_extensions: extension of files to return, e.g. 'dcm'
     :type file_extensions: str, list
+    :param file_name: string to match files to; defaults to '*' which gives all files matching the extensions. set to
+        e.g. 'a*' to get all files starting with a
     :param return_absolute_filepath: if False (default) file names are returned; if True absolute file names returned
     :returns Files: list of all found files
     """
@@ -62,8 +61,9 @@ def _get_all_files(path_to_data: (Path, str), file_extensions: (str, list),
 
     Files = []
     for extension in file_extensions:
+        search_string = file_name + extension
         # find the files matching this extension
-        AllFiles = glob.glob(str(path_to_data / extension))
+        AllFiles = glob.glob(str(path_to_data / search_string))
         # process all found files into desired format
         for file in AllFiles:
             if return_absolute_filepath:
@@ -73,6 +73,6 @@ def _get_all_files(path_to_data: (Path, str), file_extensions: (str, list),
                 Files.append(tail)
 
         if not Files:
-            warnings.warn(f'no {extension} files in {path_to_data}')
+            warnings.warn(f'\nno files matching {search_string} in {path_to_data}\n')
 
     return Files
