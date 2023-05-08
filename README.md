@@ -35,6 +35,15 @@ home_dir = Path('~').expanduser()
 jpg_files = get_all_files(home_dir, ['jpg', 'png'])
 ```
 
+**get all jpg files starting with 'a' in home directory**
+```python
+from get_all_files import get_all_files
+from pathlib import Path
+
+home_dir = Path('~').expanduser()
+jpg_files = get_all_files(home_dir, 'jpg', file_name='a*')
+```
+
 **get absolute file paths instead of file names**
 ```python
 from get_all_files import get_all_files

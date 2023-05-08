@@ -85,3 +85,19 @@ def test_passing_extensions_with_different_formats():
 
     with pytest.raises(TypeError):
         get_all_files(home_dir, 123)
+
+
+def test_filename_wildcards():
+    home_dir = Path('~').expanduser()
+    extension1 = 'random_extension1'
+    file_to_write1 = home_dir / ('arbitrary_file.' + extension1)
+    file_to_write2 = home_dir / ('garbitrary_file.' + extension1)  # this shouldn't get picked up
+    with open(file_to_write1, 'w') as f:
+        f.write('ooga booga!')
+    with open(file_to_write2, 'w') as f:
+        f.write('ooga booga!')
+    files = get_all_files(home_dir, extension1, file_name='a*', return_absolute_filepath=True)
+    for file in files:
+        assert Path(file).parent == home_dir
+        assert Path(file).name.split('.')[1] in [extension1]
+        assert Path(file).name == 'arbitrary_file.' + extension1
