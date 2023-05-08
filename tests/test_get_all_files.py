@@ -128,7 +128,9 @@ def test_sort():
             f.write('ooga booga!')
 
     fetched_files = get_all_files(test_dir, extension, sorted=True)
-    assert sorted(files) == fetched_files
+    expected_result = sorted([str(file) for file in files_to_write])
+    assert expected_result == fetched_files
+
 
 
 
