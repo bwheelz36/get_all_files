@@ -29,7 +29,7 @@ def _process_extensions(file_extensions: (str, list)) -> list:
         raise TypeError(f'file_extensions must be type str or list, not {type(file_extensions)}')
     processed_extensions = []
     for extension in file_extensions:
-        if not file_extensions[0] == '.':
+        if not extension[0] == '.':
             # handles the case where the user entered 'jpg' instead of '.jpg'
             extension = '.' + extension
         processed_extensions.append(extension)
@@ -39,6 +39,7 @@ def _process_extensions(file_extensions: (str, list)) -> list:
 def _get_all_files(path_to_data: (Path, str),
                    file_extensions: (str, list),
                    file_name: str = '*',
+                   sorted: bool = True,
                    return_absolute_filepath: bool = False) -> list:
     """
     quick script to just collect all the files in the Analysis path. Basically a wrapper around glob with (for me)
@@ -50,7 +51,11 @@ def _get_all_files(path_to_data: (Path, str),
     :type file_extensions: str, list
     :param file_name: string to match files to; defaults to '*' which gives all files matching the extensions. set to
         e.g. 'a*' to get all files starting with a
+    :type file_name: str, optional
+    :param sorted: applys default list sorting to found files.
+    :type sorted: bool, optional
     :param return_absolute_filepath: if False (default) file names are returned; if True absolute file names returned
+    :type return_absolute_filepath: bool, optional
     :returns Files: list of all found files
     """
     # process input path:
@@ -75,4 +80,6 @@ def _get_all_files(path_to_data: (Path, str),
         if not Files:
             warnings.warn(f'\nno files matching {search_string} in {path_to_data}\n')
 
+    if sorted:
+        Files.sort()
     return Files
